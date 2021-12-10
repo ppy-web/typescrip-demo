@@ -1,8 +1,0 @@
-如何使用webpack管理ts文件
-1. npm init -y  // 生成配置文件
-2. npm i -D webpack webpack-cli typescript ts-loader // 安装工具包
-3. 创建webpack配置文件
-4. 安装生成html的插件 npm i -D html-webpack-plugin
-5. 安装webpack开发服务 npm i -D webpack-dev-server
-6. 安装清除dist目录的插件 npm i -D clean-webpack-plugin 
-7. 安装并使用babel处理兼容性问题 npm i -D @babel/core @babel/preset-env babel-loader core-js  //bable-loader结合插件 core-js浏览器环境（按需加载）

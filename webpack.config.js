@@ -2,6 +2,7 @@ const path = require('path');
 
 // 插件引入
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 非默认需要使用{}引入
 
 module.exports = {
@@ -10,8 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     environment: {
-      arrowFunction: false,
-      const: false
+      arrowFunction: false
     }
   },
   // webpack 打包时要使用的模块
@@ -51,15 +51,54 @@ module.exports = {
         ],
         exclude: /node-modules/,
       },
+      // 设置less的文件处理
+      {
+        test: /\.less$/,
+        use:[
+          "style-loader",
+          "css-loader",
+          {
+            loader: 'postcss-loader',
+            options:{
+              postcssOptions:{
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {
+                      browsers: 'last 2 versions'
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          "less-loader"
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        }
+      },
 
   ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       // title: '自定义title'
-      template: './src/public/index.html'
+      template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns:[
+        {
+          from: path.resolve(__dirname, 'static'),
+          to: path.resolve(__dirname, 'dist')
+        }
+      ]
+    })
   ],
 
   // 设置哪些文件可以作为模块引用
