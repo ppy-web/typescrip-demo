@@ -12,8 +12,8 @@ import './style/index.less'
 // console.log(foo.X, foo.Y);
 
 import GameControl from './modules/GameControl'
-
-const gameControl = new GameControl;
+new GameControl
+// const gameControl = new GameControl;
 // setInterval(()=>{
 //   console.log(gameControl.direciton);
 // }, 1000)

@@ -24,11 +24,24 @@
       <div>
         SCORE: <span id="score">0</span>
       </div>
+      <button id="reload">
+        重新开始
+      </button>
       <div>
         LEVEL: <span id="level">1</span>
       </div>
     </div>
-
+    <div class="controller">
+      <button class="btn" id="up">↑</button>
+    </div>
+    <div class="controller">
+      <!-- <span class="btn" id="left">←</span> -->
+      <input type="button" class="btn" id="left" onclick="left" value="←"></input>
+      <button class="btn" id="right">→</button>
+    </div>
+    <div class="controller">
+      <button class="btn" id="down">↓</button>
+    </div>
   </div>
 </body>
 </html>

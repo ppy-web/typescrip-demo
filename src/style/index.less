@@ -1,6 +1,7 @@
 @bgcolor: #96cc7b;
 html {
   overflow: hidden;
+  user-select: none;
 }
 * {
   margin: 0;
@@ -18,7 +19,8 @@ body {
 
 .container {
   width: 360px;
-  height: 420px;
+  height: 520px;
+  padding-top: 30px;
   background-color: @bgcolor;
   margin: 0px auto;
   border: 5px solid black;
@@ -70,3 +72,16 @@ body {
     transform: rotate(45deg);
   }
 }
+.controller {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bolder;
+  .btn{
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #888888;
+    background: #999;
+    padding: 5px 20px;
+  }
+}
+

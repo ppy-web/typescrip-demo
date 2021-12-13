@@ -2,18 +2,28 @@
 import Snake from './Snake'
 import ScorePanel from './ScorePanel'
 import Food from './Food'
-
 class GameControl {
   snake: Snake;
   scorePanel: ScorePanel;
   food: Food;
   direciton: string = ''; // 存储按键方向
   isLive: boolean = true; // 蛇是否活着，游戏是否结束
+  btn_up: HTMLElement;
+  btn_left: HTMLElement;
+  btn_right: HTMLElement;
+  btn_down: HTMLElement;
+  reload: HTMLElement;
 
   constructor() {
     this.snake = new Snake;
     this.scorePanel = new ScorePanel(10,10);
     this.food = new Food;
+
+    this.btn_up = document.getElementById('up')!;
+    this.btn_left = document.getElementById('left')!;
+    this.btn_right = document.getElementById('right')!;
+    this.btn_down = document.getElementById('down')!;
+    this.reload = document.getElementById('reload')!;
     this.init(); // 游戏开始
   }
 
@@ -21,6 +31,11 @@ class GameControl {
   init() {
     // 绑定键盘按下事件
     document.addEventListener('keydown', this.keyDownHander.bind(this)) // 利用bind绑定this是的this始终是当前GameControl对象
+    this.btn_up.addEventListener('click', this.up.bind(this))
+    this.btn_left.addEventListener('click', this.turnLeft.bind(this))
+    this.btn_right.addEventListener('click', this.turnRight.bind(this))
+    this.btn_down.addEventListener('click', this.down.bind(this))
+    this.reload.addEventListener('click', this.reloadGame)
     // 调用run()使蛇移动
     this.run();
   }
@@ -30,6 +45,23 @@ class GameControl {
     // console.log(e.key); //ArrowUp, ArrowLeft, ArrowRight, ArrowDown
     this.direciton = e.key;
     // this.run();
+  }
+  up(){
+    this.direciton = "ArrowUp";
+  }
+  turnLeft(){
+    this.direciton = "ArrowLeft";
+  }
+  turnRight(){
+    this.direciton = "ArrowRight";
+  }
+  down(){
+    this.direciton = "ArrowDown";
+  }
+  reloadGame() {
+    console.log('rererere');
+    
+    this.direciton = "";
   }
 
   // 创建一个让蛇移动的方法
